@@ -21,6 +21,12 @@ class Discuss
     #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'discuss')]
     private Collection $Message;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Title = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Content = null;
+
     public function __construct()
     {
         $this->Message = new ArrayCollection();
@@ -57,6 +63,30 @@ class Discuss
                 $message->setDiscuss(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->Title;
+    }
+
+    public function setTitle(string $Title): static
+    {
+        $this->Title = $Title;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->Content;
+    }
+
+    public function setContent(string $Content): static
+    {
+        $this->Content = $Content;
 
         return $this;
     }

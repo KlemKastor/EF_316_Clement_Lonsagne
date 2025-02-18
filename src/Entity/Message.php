@@ -24,6 +24,9 @@ class Message
     #[ORM\ManyToOne(inversedBy: 'Message')]
     private ?Discuss $discuss = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Content = null;
+
     public function __construct()
     {
         $this->Likes = new ArrayCollection();
@@ -72,6 +75,18 @@ class Message
     public function setDiscuss(?Discuss $discuss): static
     {
         $this->discuss = $discuss;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->Content;
+    }
+
+    public function setContent(string $Content): static
+    {
+        $this->Content = $Content;
 
         return $this;
     }
